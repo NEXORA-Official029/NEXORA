@@ -1,0 +1,48 @@
+{
+  "entities": {
+    "Content": {
+      "title": "Website Content",
+      "description": "Stores editable text for the website sections.",
+      "type": "object",
+      "properties": {
+        "heroTitle": { "type": "string", "description": "Main headline on the home page." },
+        "heroTagline": { "type": "string", "description": "Tagline under the hero title." },
+        "aboutDescription": { "type": "string", "description": "About us section description." },
+        "founder": { "type": "string", "description": "Name of the founder." },
+        "coFounder": { "type": "string", "description": "Name of the co-founder." },
+        "contactEmail": { "type": "string", "description": "Public contact email." },
+        "contactPhone": { "type": "string", "description": "Public contact phone." },
+        "contactLocation": { "type": "string", "description": "Public contact location." }
+      },
+      "required": ["heroTitle", "heroTagline", "aboutDescription", "founder", "coFounder", "contactEmail", "contactPhone", "contactLocation"]
+    },
+    "Message": {
+      "title": "Contact Message",
+      "description": "Stores messages submitted via the contact form.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Name of the sender." },
+        "email": { "type": "string", "description": "Email of the sender." },
+        "message": { "type": "string", "description": "The message content." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "When the message was sent." }
+      },
+      "required": ["name", "email", "message", "createdAt"]
+    },
+    "User": {
+      "title": "User Profile",
+      "description": "Stores user roles and permissions.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Firebase Auth UID." },
+        "email": { "type": "string", "description": "User email." },
+        "role": { "type": "string", "enum": ["admin", "user"], "description": "User role." }
+      },
+      "required": ["uid", "email", "role"]
+    }
+  },
+  "firestore": {
+    "/content/{contentId}": { "schema": "Content", "description": "Website content documents." },
+    "/messages/{messageId}": { "schema": "Message", "description": "Contact form submissions." },
+    "/users/{userId}": { "schema": "User", "description": "User profiles." }
+  }
+}
